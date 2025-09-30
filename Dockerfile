@@ -1,4 +1,4 @@
-FROM node:12.22.1-alpine3.10
+FROM node:latest
 
 LABEL maintainer="p@p.org"
 LABEL build_date="2024-09-20"
@@ -10,10 +10,10 @@ LABEL desc="This is docker tutorial with \
 pritamworld website"
 LABEL tutorial1="Docker" tutorial2="LABEL INSTRUCTION"
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-
+WORKDIR /app
+COPY package.json package.json
+COPY package-lock.json package-lock.json
+RUN npm install
 COPY . .
-
-EXPOSE 5000
+EXPOSE 3000
 CMD ["node", "index.js"]
